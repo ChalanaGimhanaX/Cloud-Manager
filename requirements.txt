@@ -1,0 +1,26 @@
+# Core dependencies
+discord.py>=2.0.0
+python-dotenv>=0.19.0
+aiohttp>=3.8.1
+aiosqlite>=0.17.0
+
+# Web dashboard
+Flask>=2.0.0
+Flask-Discord>=0.1.1
+Werkzeug>=2.0.0
+
+# Date and time handling
+pytz>=2022.1
+
+# Database
+sqlite3
+
+# Security
+cryptography>=37.0.0
+
+# Utilities
+urllib3>=1.26.9
+requests>=2.27.1
+
+# Development tools
+watchdog>=2.1.0  # For live reloading during development

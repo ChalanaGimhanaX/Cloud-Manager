@@ -1,0 +1,217 @@
+/* Main text color */
+body {
+    color: white !important;
+}
+
+/* Ensure all text elements use white color by default */
+body, 
+p, h1, h2, h3, h4, h5, h6, 
+.text-white,
+.card-title,
+.card-header,
+.modal-title,
+.form-label,
+.breadcrumb-item {
+    color: #ffffff !important; 
+}
+
+/* Ensure elements inside containers also have white text */
+.container, .container-fluid {
+    color: white !important;
+}
+
+/* Make headings white */
+h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+}
+
+/* Make all paragraph text white */
+p {
+    color: white !important;
+}
+
+/* Style links properly for dark theme */
+a {
+    color: #8bb9fe !important;
+}
+
+a:hover {
+    color: #a8c7fa !important;
+    text-decoration: underline;
+}
+
+/* For tables */
+table, th, td {
+    color: white !important;
+}
+
+/* Fix table text */
+.table {
+    color: #ffffff !important;
+}
+
+.table th, 
+.table td {
+    color: #ffffff !important;
+}
+
+/* Form elements */
+input, textarea, select {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Make form elements more visible with better contrast */
+.form-control {
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+    border-color: #495057 !important;
+}
+
+.form-control:focus {
+    background-color: #3a4047 !important;
+    color: #ffffff !important;
+    border-color: #80bdff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+/* Make form labels white */
+label {
+    color: white !important;
+}
+
+/* Make breadcrumb text white */
+.breadcrumb-item, .breadcrumb-item.active {
+    color: white !important;
+}
+
+/* Ensure breadcrumb text is visible */
+.breadcrumb-item.active {
+    color: #dddddd !important;
+}
+
+/* Card text white */
+.card {
+    color: white !important;
+}
+.card-header, .card-body, .card-footer {
+    color: white !important;
+}
+
+/* Make alert text visible */
+.alert {
+    color: #212529 !important;
+}
+
+/* Fix alerts to maintain readability */
+.alert-success {
+    color: #ffffff !important;
+    background-color: #28a745 !important;
+    border-color: #218838 !important;
+}
+
+.alert-danger {
+    color: #ffffff !important;
+    background-color: #dc3545 !important;
+    border-color: #c82333 !important;
+}
+
+.alert-info {
+    color: #ffffff !important;
+    background-color: #17a2b8 !important;
+    border-color: #138496 !important;
+}
+
+.alert-warning {
+    color: #212529 !important;
+    background-color: #ffc107 !important;
+    border-color: #e0a800 !important;
+}
+
+/* Make buttons text readable */
+.btn {
+    color: inherit;
+}
+
+/* Fix buttons to ensure they're visible */
+.btn-primary {
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+
+.btn-secondary {
+    color: #fff !important;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
+.btn-danger {
+    color: #fff !important;
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+/* Force using !important to override Bootstrap defaults */
+.text-white {
+    color: white !important;
+}
+
+/* Override Bootstrap dark theme elements to ensure text is visible */
+.bg-dark {
+    background-color: #212529 !important;
+}
+
+/* Make modals visible */
+.modal-content {
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+}
+
+/* Input background and text colors for better visibility */
+input.bg-dark, 
+select.bg-dark, 
+textarea.bg-dark {
+    background-color: #2c3136 !important;
+    color: #ffffff !important;
+}
+
+/* Close button in modals */
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Improve contrast for dropdown menus */
+.dropdown-menu {
+    background-color: #343a40 !important;
+}
+
+.dropdown-item {
+    color: #ffffff !important;
+}
+
+.dropdown-item:hover {
+    background-color: #2c3136 !important;
+}
+
+/* Fix navbar text colors */
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+
+/* Make sure badges have proper contrast */
+.badge {
+    color: #ffffff !important;
+}
+
+/* Fix code blocks */
+pre, code {
+    background-color: #2c3136 !important;
+    color: #e9ecef !important;
+    border-radius: 3px;
+    padding: 0.2em 0.4em;
+}
