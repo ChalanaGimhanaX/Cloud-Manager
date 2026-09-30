@@ -1,94 +1,82 @@
-# Cloud Manager - Multi-server V2ray Management Bot
+# Cloud Manager — Discord and Flask Server Dashboard
 
-Cloud Manager is a Discord bot with a web dashboard that allows server owners to manage V2ray configurations across multiple servers. Each Discord server can have its own set of V2ray servers, and users can only access their own configurations.
+A Python prototype for managing V2Ray server configurations through Discord commands and a Flask dashboard with Discord OAuth login.
 
-## Features
+**Stack:** Python · discord.py · Flask · Flask-Discord · SQLite · aiohttp
 
-- **Multi-server Management**: Configure and manage multiple V2ray servers from one dashboard
-- **Discord Authorization**: Use Discord OAuth2 for secure login to the dashboard
-- **Role-based Permissions**: Configurable admin and manager roles
-- **User Isolation**: Each Discord server's configurations are isolated
-- **Dynamic Commands**: Server-specific Discord slash commands
-- **Usage Monitoring**: Track bandwidth usage and expiration dates
-- **Web Dashboard**: Modern, responsive interface for configuration management
+## Project highlights
 
-## Setup Instructions
+- Discord commands for server administration and client configuration operations.
+- Web dashboard for browsing guilds and their associated servers.
+- SQLite persistence for guild, role, server, and client records.
+- Shared database and API utilities for the bot and dashboard.
 
-### Prerequisites
+## Architecture
 
-- Python 3.8 or higher
-- Discord Bot Token
-- Discord Application with OAuth2 configured
-- V2ray servers with accessible API
+```text
+Discord bot / slash commands ─┐
+                             ├─ SQLite + API manager → configured servers
+Flask dashboard / OAuth ──────┘
+```
 
-### Installation
+## Local setup
 
-1. Clone the repository
-   ```
-   git clone https://github.com/yourusername/cloud-manager.git
-   cd cloud-manager
-   ```
+Use Python 3.10+ and your own Discord application and test infrastructure.
 
-2. Create a virtual environment
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+```bash
+git clone https://github.com/ChalanaGimhanaX/Cloud-Manager.git
+cd Cloud-Manager
+python -m venv .venv
+```
 
-3. Install dependencies
-   ```
-   pip install -r requirements.txt
-   ```
+Activate `.venv\Scripts\Activate.ps1` in PowerShell or `source .venv/bin/activate` on macOS/Linux, then:
 
-4. Copy the example environment file
-   ```
-   cp .env.example .env
-   ```
+```bash
+python -m pip install -r requirements.txt
+```
 
-5. Edit the `.env` file with your configuration:
-   - `BOT_TOKEN`: Your Discord bot token
-   - `DISCORD_CLIENT_ID`: Your Discord OAuth2 client ID
-   - `DISCORD_CLIENT_SECRET`: Your Discord OAuth2 client secret
-   - `DISCORD_REDIRECT_URI`: The redirect URI (usually http://localhost:5000/callback for local development)
-   - `SUPERADMIN_IDS`: Comma-separated list of Discord user IDs who should have superadmin access
+Copy `.env.example` to `.env`. Set your own bot token, OAuth client ID and secret, Flask session secret, superadmin IDs, and database path. Use an absolute `DB_PATH` so the bot and dashboard open the same database.
 
-### Running the Bot and Dashboard
+Set `DASHBOARD_URL=http://localhost:5000` and register `http://localhost:5000/callback` as the Discord OAuth redirect. Enable the privileged intents requested by `discord.Intents.all()` in `main.py`.
 
-1. Start the Discord bot:
-   ```
-   python main.py
-   ```
+From the repository root, start the bot:
 
-2. In a separate terminal, start the web dashboard:
-   ```
-   cd dashboard
-   python app.py
-   ```
+```bash
+python main.py
+```
 
-3. Access the web dashboard at http://localhost:5000
+In a second terminal with the same environment activated:
 
-## Discord Commands
+```bash
+python run_dashboard.py
+```
 
-- `/create` - Create a new V2ray configuration
-- `/update` - Update or extend an existing configuration
-- `/delete` - Delete a configuration
-- `/config` - Show configuration status and details
-- `/usage` - Display bandwidth usage statistics
-- `/servers add` - Add a new V2ray server (admin only)
-- `/servers list` - List configured servers
-- `/servers remove` - Remove a server (admin only)
-- `/admin roles` - Configure admin and manager roles
-- `/admin stats` - Display server usage statistics
-- `/admin find` - Find a user's configuration
+Open <http://localhost:5000>. The bot initializes a fresh database; bring your own test server configuration.
 
-## Dashboard Features
+## Code guide
 
-- View and manage servers for each Discord server
-- Create, update and delete client configurations
-- Monitor bandwidth usage and expiration dates
-- Bulk operations for client management
-- Admin tools for server monitoring
+| Location | Responsibility |
+| --- | --- |
+| `main.py` | Bot startup, guild setup, command loading |
+| `commands/` | Administration and configuration commands |
+| `dashboard/app.py` | Flask routes and Discord OAuth |
+| `dashboard/templates/` | HTML interface |
+| `utils/db.py` | SQLite persistence |
+| `utils/api_manager.py` | Server API integration |
+| `run_dashboard.py` | Dashboard entry point |
 
-## License
+## Development status
 
-[MIT License](LICENSE)
+This is a prototype, not a production-ready hosting control panel.
+
+- The command loader references `commands.config` and `commands.usage`, but those modules are not included.
+- Development entry points enable insecure OAuth transport. Production needs HTTPS and removal of that setting.
+- The bot can create administrative roles on joining a guild. Review `setup_default_roles` before inviting it to an existing community.
+- Authorization and guild isolation need end-to-end tests before use with customers or real infrastructure.
+- Environment files, SQLite databases, logs, and bytecode must remain outside Git.
+
+For manual verification, start in a dedicated test guild, confirm database initialization, sign in through the dashboard, and verify access boundaries for each role. No live infrastructure tests are implied by this documentation.
+
+## Author
+
+[Chalana Gimhana](https://github.com/ChalanaGimhanaX) — Python, APIs, and server automation.
